@@ -20,9 +20,7 @@ RUN apt-get update && \
 	vim \
 	php7.0-xml \
 	php7.0-fpm && \
-	cifs-utils && \
 	apt-get clean && \
-	rm -rf /var/lib/apt/lists/*
 
 # Create dirs for Munki
 RUN mkdir -p /webroot && \
@@ -44,8 +42,6 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
 
 # Expose volumes
 VOLUME ["/webroot"]
-VOLUME ["/webroot/macosrepo"]
-
 
 # Expose ports
 EXPOSE 80 443
