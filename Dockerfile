@@ -17,6 +17,7 @@ RUN apt-get update && \
 	apt-get install -y \
 	nginx \
 	vim \
+	ssh \
 	php7.0-xml \
 	php7.0-fpm && \
 	apt-get clean && \
