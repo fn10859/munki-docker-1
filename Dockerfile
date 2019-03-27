@@ -44,7 +44,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
 
 # Expose volumes
 VOLUME ["/webroot"]
-VOLUME ["/macosrepo"]
+VOLUME ["/webroot/macosrepo"]
 
 
 # Expose ports
