@@ -25,6 +25,7 @@ RUN apt-get update && \
 
 # Create dirs for Munki
 RUN mkdir -p /webroot && \
+	mkdir -p /macosrepo && \
 	mkdir -p /etc/nginx/sites-enabled/ && \
 	rm /etc/nginx/sites-enabled/default
 
@@ -42,6 +43,8 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
 
 # Expose volumes
 VOLUME ["/webroot"]
+VOLUME ["/macosrepo"]
+
 
 # Expose ports
 EXPOSE 80 443
