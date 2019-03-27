@@ -32,10 +32,6 @@ RUN mkdir -p /webroot && \
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD munki-repo.conf /etc/nginx/sites-enabled/
 
-# Add start up script
-ADD start.sh /start.sh
-RUN chmod +x /start.sh
-
 # Set up logs
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
 	ln -sf /dev/stderr /var/log/nginx/error.log
