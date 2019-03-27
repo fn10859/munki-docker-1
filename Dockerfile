@@ -26,7 +26,7 @@ RUN apt-get update && \
 
 # Create dirs for Munki
 RUN mkdir -p /webroot && \
-	mkdir -p /macosrepo && \
+	mkdir -p /webroot/macosrepo && \
 	mkdir -p /etc/nginx/sites-enabled/ && \
 	rm /etc/nginx/sites-enabled/default
 
