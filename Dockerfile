@@ -9,8 +9,7 @@
 # Start from Debian because its smaller than Ubuntu but gets the job done.
 FROM debian:stretch
 
-MAINTAINER Calum Hunter (calum.h@gmail.com)
-
+#MAINTAINER Calum Hunter (calum.h@gmail.com)
 
 # Add the packages we need from apt then remove the cached list saving some disk space
 RUN apt-get update && \
@@ -21,10 +20,10 @@ RUN apt-get update && \
 	php7.0-xml \
 	php7.0-fpm && \
 	apt-get clean && \
-
+	rm -rf /var/lib/apt/lists/*
+	
 # Create dirs for Munki
 RUN mkdir -p /webroot && \
-	mkdir -p /webroot/macosrepo && \
 	mkdir -p /etc/nginx/sites-enabled/ && \
 	rm /etc/nginx/sites-enabled/default
 
