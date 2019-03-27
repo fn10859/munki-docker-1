@@ -20,6 +20,7 @@ RUN apt-get update && \
 	vim \
 	php7.0-xml \
 	php7.0-fpm && \
+	cifs-utils && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
 
