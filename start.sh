@@ -4,6 +4,8 @@
 echo "- Starting php7.0-fpm..."
 echo ""
 service php7.0-fpm start
+service sshd start
 # Start up nginx
 echo "- Starting nginx..."
 nginx
+

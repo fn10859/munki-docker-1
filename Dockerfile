@@ -24,13 +24,14 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 	
 # Create dirs for Munki
-RUN mkdir -p /webroot && \
+RUN mkdir -p /webroot/ && \
+	mkdir -p /webroot/macosrepo/ && \
 	mkdir -p /etc/nginx/sites-enabled/ && \
 	rm /etc/nginx/sites-enabled/default
 
 # Add Munki config files
 ADD nginx.conf /etc/nginx/nginx.conf
-ADD munki-repo.conf /etc/nginx/sites-enabled/
+ADD munki-repo.conf /etc/nginx/sites-enabled/munki-repo.conf
 
 # Set up logs
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
