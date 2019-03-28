@@ -17,7 +17,6 @@ RUN apt-get update && \
 	apt-get install -y \
 	nginx \
 	vim \
-	ssh \
 	php7.0-xml \
 	php7.0-fpm && \
 	apt-get clean && \
@@ -27,11 +26,12 @@ RUN apt-get update && \
 RUN mkdir -p /webroot/ && \
 	mkdir -p /webroot/macosrepo/ && \
 	mkdir -p /etc/nginx/sites-enabled/ && \
-	rm /etc/nginx/sites-enabled/default
+	rm /etc/nginx/sites-enabled/default/ && \
+	mkdir -p /rootwww/
 
 # Add Munki config files
 ADD nginx.conf /etc/nginx/nginx.conf
-ADD munki-repo.conf /etc/nginx/sites-enabled/munki-repo.conf
+ADD munki-repo.conf /etc/nginx/sites-enabled/
 
 # Set up logs
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
@@ -39,9 +39,8 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
 
 # Expose volumes
 VOLUME ["/webroot"]
+VOLUME ["/webroot/macosrepo/"]
+VOLUME ["/home/site/"]
 
 # Expose ports
-EXPOSE 80 443
-
-# Lets go!
-CMD ["/start.sh"]
+EXPOSE 80 443 8080 8081
