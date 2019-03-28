@@ -26,8 +26,7 @@ RUN apt-get update && \
 RUN mkdir -p /webroot/ && \
 	mkdir -p /webroot/macosrepo/ && \
 	mkdir -p /etc/nginx/sites-enabled/ && \
-	rm /etc/nginx/sites-enabled/default/ && \
-	mkdir -p /rootwww/
+	mkdir -p /macosrepo/
 
 # Add Munki config files
 ADD nginx.conf /etc/nginx/nginx.conf
@@ -35,12 +34,13 @@ ADD munki-repo.conf /etc/nginx/sites-enabled/
 
 # Set up logs
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
-	ln -sf /dev/stderr /var/log/nginx/error.log
+	ln -sf /dev/stderr /var/log/nginx/error.log && \
+	ln -sf /webroot/macosrepo/ /macosrepo/
 
 # Expose volumes
 VOLUME ["/webroot"]
 VOLUME ["/webroot/macosrepo/"]
-VOLUME ["/home/site/"]
+VOLUME ["/macosrepo/"]
 
 # Expose ports
-EXPOSE 80 443 8080 8081
+EXPOSE 80 443
